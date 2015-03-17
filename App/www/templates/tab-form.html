@@ -1,0 +1,544 @@
+<ion-view view-title="Cuestionario">
+  <ion-content style="text-align: center;"> 
+    <img src="img/parcont.png" alt="" style="width:150px;text-align: left !important;"/>
+      <div style="text-align: center;">
+        <button class="button button-assertive" type="" ng-click="refresh()">
+          <i class="icon ion-close"></i> Salir
+        </button>
+        <br>
+        <br>          
+        <div class="card">              
+          <h3>Datos para ser diligenciados por el trabajador:</h3>
+          <h3>{{primerNombre}} {{primerApellido}}</h3>
+          <h4>Numero de documento: {{numeroDocumento}}</h4>                    
+          <h3>Con respecto a su salud conteste las siguientes preguntas:</h3>                
+        </div>
+        <form name="saludForm" novalidate>
+          <div style="text-align: left !important;" class="list">
+            <div id="question1">
+              <label class="item item-input">
+                <div class="input-label inputs">
+                  Ha sufrido o padece de vértigo?
+                </div>                             
+              </label>
+              <ion-radio class="item item-radio balanced" name="Q11" ng-model="cuestionario.q1" ng-value="'Si'">Si</ion-radio>
+              <ion-radio class="item item-radio assertive" name="Q12" ng-model="cuestionario.q1" ng-click="clearQ1()" ng-value="'No'">No</ion-radio>
+              <div ng-if="cuestionario.q1 =='Si'">
+                <label style="white-space: normal !important;" class="item item-input inputs">
+                  <div class="input-label">
+                    Hace cuanto lo padece?
+                  <label class="item item-input">                     
+                    <input focus="true" type="number" class="input-validate" placeholder="Digite la cantidad" name="Q1Cantidad" required ng-model="cuestionario.cantidadQ1" ng-minlength="1" ng-maxlength="3"/>
+                  </label>                         
+                  </div>
+                  <label class="item-radio radios">
+                    <ion-radio class="item item-radio" name="Q13" ng-model="cuestionario.intervaloQ1" value="Semanas">Semana/s</ion-radio>
+                    <ion-radio class="item item-radio" name="Q14" ng-model="cuestionario.intervaloQ1" value="Meses">Mes/es</ion-radio>
+                    <ion-radio class="item item-radio" name="Q15" ng-model="cuestionario.intervaloQ1" value="Años">Año/s</ion-radio>
+                  </label> 
+                </label> 
+              </div>                    
+            </div>
+            <br>
+            <div id="question2" ng-show="cuestionario.intervaloQ1 && saludForm.Q1Cantidad.$valid || cuestionario.q1 =='No'">
+              <label class="item item-input">
+                <div class="input-label inputs">
+                  Ha sufrido o padece de mareos, vahidos?
+                </div>                             
+              </label>
+              <ion-radio class="item item-radio balanced" name="Q21" ng-model="cuestionario.q2" ng-value="'Si'">Si</ion-radio>
+              <ion-radio class="item item-radio assertive" name="Q22" ng-model="cuestionario.q2" ng-click="clearQ2()" ng-value="'No'">No</ion-radio>
+              <div ng-if="cuestionario.q2 =='Si'">
+                <label style="white-space: normal !important;" class="item item-input inputs">
+                  <div class="input-label">
+                    Hace cuanto lo padece?
+                  <label class="item item-input">                     
+                    <input focus="true" type="number" class="input-validate" class="input-validate" ng-model="cuestionario.cantidadQ2" placeholder="Digite la cantidad" name="Q2Cantidad" required ng-minlength="1" ng-maxlength="3" />
+                  </label>                         
+                  </div>
+                  <label class="item-radio radios">
+                    <ion-radio class="item item-radio" name="Q23" ng-model="cuestionario.intervaloQ2" value="Semanas">Semana/s</ion-radio>
+                    <ion-radio class="item item-radio" name="Q24" ng-model="cuestionario.intervaloQ2" value="Meses">Mes/es</ion-radio>
+                    <ion-radio class="item item-radio" name="Q25" ng-model="cuestionario.intervaloQ2" value="Años">Año/s</ion-radio>
+                  </label> 
+                </label> 
+              </div>                 
+            </div>
+            <br>
+            <div id="question3" ng-show="cuestionario.intervaloQ2 && saludForm.Q2Cantidad.$valid || cuestionario.q2 =='No'">
+              <label class="item item-input">
+                <div class="input-label inputs">
+                  Ha sufrido o padece de desmayos repentinos?
+                </div>                             
+              </label>
+              <ion-radio class="item item-radio balanced" name="Q31" ng-model="cuestionario.q3" ng-value="'Si'">Si</ion-radio>
+              <ion-radio class="item item-radio assertive" name="Q32" ng-model="cuestionario.q3" ng-click="clearQ3()" ng-value="'No'">No</ion-radio>
+              <div ng-if="cuestionario.q3 =='Si'">
+                <label style="white-space: normal !important;" class="item item-input inputs">
+                  <div class="input-label">
+                    Hace cuanto lo padece?
+                  <label class="item item-input">                     
+                    <input focus="true" type="number" class="input-validate" placeholder="Digite la cantidad" name="Q3Cantidad" required ng-model="cuestionario.cantidadQ3"/>
+                  </label>                         
+                  </div>
+                  <label class="item-radio radios">
+                    <ion-radio class="item item-radio" name="Q33" ng-model="cuestionario.intervaloQ3" value="Semanas">Semana/s</ion-radio>
+                    <ion-radio class="item item-radio" name="Q34" ng-model="cuestionario.intervaloQ3" value="Meses">Mes/es</ion-radio>
+                    <ion-radio class="item item-radio" name="Q35" ng-model="cuestionario.intervaloQ3" value="Años">Año/s</ion-radio>
+                  </label> 
+                </label> 
+              </div>                 
+            </div>                  
+            <br>
+            <div id="question4" ng-show="cuestionario.intervaloQ3 && saludForm.Q3Cantidad.$valid || cuestionario.q3 =='No'">
+              <label class="item item-input">
+                <div class="input-label inputs">
+                  Ha sufrido de epilepsia o convulsiones?
+                </div>                             
+              </label>
+              <ion-radio class="item item-radio balanced" name="Q41" ng-model="cuestionario.q4" ng-value="'Si'">Si</ion-radio>
+              <ion-radio class="item item-radio assertive" name="Q42" ng-model="cuestionario.q4" ng-click="clearQ4()" ng-value="'No'">No</ion-radio>
+              <div ng-if="cuestionario.q4 =='Si'">
+                <label style="white-space: normal !important;" class="item item-input inputs">
+                  <div class="input-label">
+                    Hace cuanto lo padece?
+                  <label class="item item-input">                     
+                    <input focus="true" type="number" class="input-validate" placeholder="Digite la cantidad" name="Q4Cantidad" required ng-model="cuestionario.cantidadQ4"/>
+                  </label>                         
+                  </div>
+                  <label class="item-radio radios">
+                    <ion-radio class="item item-radio" name="Q43" ng-model="cuestionario.intervaloQ4" value="Semanas">Semana/s</ion-radio>
+                    <ion-radio class="item item-radio" name="Q44" ng-model="cuestionario.intervaloQ4" value="Meses">Mes/es</ion-radio>
+                    <ion-radio class="item item-radio" name="Q45" ng-model="cuestionario.intervaloQ4" value="Años">Año/s</ion-radio>
+                  </label> 
+                </label> 
+              </div>                 
+            </div>
+            <br>                   
+            <div id="question5" ng-show="cuestionario.intervaloQ4 && saludForm.Q4Cantidad.$valid || cuestionario.q4 =='No'">
+              <label class="item item-input">
+                <div class="input-label inputs">
+                  Ha sufrido alguna enfermedad psiquiatrica?
+                </div>                             
+              </label>
+              <ion-radio class="item item-radio balanced" name="Q51" ng-model="cuestionario.q5" ng-value="'Si'">Si</ion-radio>
+              <ion-radio class="item item-radio assertive" name="Q52" ng-model="cuestionario.q5" ng-click="clearQ5()" ng-value="'No'">No</ion-radio>
+              <div ng-if="cuestionario.q5 =='Si'">
+                <label style="white-space: normal !important;" class="item item-input inputs">
+                  <div class="input-label">
+                    Hace cuanto lo padece?
+                  <label class="item item-input">                     
+                    <input focus="true" type="number" class="input-validate" placeholder="Digite la cantidad" name="Q5Cantidad" required ng-model="cuestionario.cantidadQ5"/>
+                  </label>                         
+                  </div>
+                  <label class="item-radio radios">
+                    <ion-radio class="item item-radio" name="Q53" ng-model="cuestionario.intervaloQ5" value="Semanas">Semana/s</ion-radio>
+                    <ion-radio class="item item-radio" name="Q54" ng-model="cuestionario.intervaloQ5" value="Meses">Mes/es</ion-radio>
+                    <ion-radio class="item item-radio" name="Q55" ng-model="cuestionario.intervaloQ5" value="Años">Año/s</ion-radio>
+                  </label> 
+                </label> 
+              </div>                 
+            </div>
+            <br>                   
+            <div id="question6" ng-show="cuestionario.intervaloQ5 && saludForm.Q5Cantidad.$valid || cuestionario.q5 =='No'">
+              <label class="item item-input">
+                <div class="input-label inputs">
+                  Ha sufrido de pánico o padecido temor a las alturas?
+                </div>                             
+              </label>
+              <ion-radio class="item item-radio balanced" name="Q61" ng-model="cuestionario.q6" ng-value="'Si'">Si</ion-radio>
+              <ion-radio class="item item-radio assertive" name="Q62" ng-model="cuestionario.q6" ng-click="clearQ6()" ng-value="'No'">No</ion-radio>
+              <div ng-if="cuestionario.q6 =='Si'">
+                <label style="white-space: normal !important;" class="item item-input inputs">
+                  <div class="input-label">
+                    Hace cuanto lo padece?
+                  <label class="item item-input">                     
+                    <input focus="true" type="number" class="input-validate" placeholder="Digite la cantidad" name="Q6Cantidad" required ng-model="cuestionario.cantidadQ6"/>
+                  </label>                         
+                  </div>
+                  <label class="item-radio radios">
+                    <ion-radio class="item item-radio" name="Q63" ng-model="cuestionario.intervaloQ6" value="Semanas">Semana/s</ion-radio>
+                    <ion-radio class="item item-radio" name="Q64" ng-model="cuestionario.intervaloQ6" value="Meses">Mes/es</ion-radio>
+                    <ion-radio class="item item-radio" name="Q65" ng-model="cuestionario.intervaloQ6" value="Años">Año/s</ion-radio>
+                  </label> 
+                </label> 
+              </div>                 
+            </div>
+            <br>
+            <div id="question7" ng-show="cuestionario.intervaloQ6 && saludForm.Q6Cantidad.$valid || cuestionario.q6 =='No'">
+              <label class="item item-input">
+                <div class="input-label inputs">
+                  Ha sufrido de Diabetes Mellitus (Azucar en la sangre)?
+                </div>                             
+              </label>
+              <ion-radio class="item item-radio balanced" name="Q71" ng-model="cuestionario.q7" ng-value="'Si'">Si</ion-radio>
+              <ion-radio class="item item-radio assertive" name="Q72" ng-model="cuestionario.q7" ng-click="clearQ7()" ng-value="'No'">No</ion-radio>
+              <div ng-if="cuestionario.q7 =='Si'">
+                <label style="white-space: normal !important;" class="item item-input inputs">
+                  <div class="input-label">
+                    Hace cuanto lo padece?
+                  <label class="item item-input">                     
+                    <input focus="true" type="number" class="input-validate" placeholder="Digite la cantidad" name="Q7Cantidad" required ng-model="cuestionario.cantidadQ7"/>
+                  </label>                         
+                  </div>
+                  <label class="item-radio radios">
+                    <ion-radio class="item item-radio" name="Q73" ng-model="cuestionario.intervaloQ7" value="Semanas">Semana/s</ion-radio>
+                    <ion-radio class="item item-radio" name="Q74" ng-model="cuestionario.intervaloQ7" value="Meses">Mes/es</ion-radio>
+                    <ion-radio class="item item-radio" name="Q75" ng-model="cuestionario.intervaloQ7" value="Años">Año/s</ion-radio>
+                  </label> 
+                </label> 
+              </div>                 
+            </div>
+            <br>
+            <div id="question8" ng-show="cuestionario.intervaloQ7 && saludForm.Q7Cantidad.$valid || cuestionario.q7 =='No'">
+              <label class="item item-input">
+                <div class="input-label inputs">
+                  Ha sufrido de la presión alta?
+                </div>                             
+              </label>
+              <ion-radio class="item item-radio balanced" name="Q81" ng-model="cuestionario.q8" ng-value="'Si'">Si</ion-radio>
+              <ion-radio class="item item-radio assertive" name="Q82" ng-model="cuestionario.q8" ng-click="clearQ8()" ng-value="'No'">No</ion-radio>
+              <div ng-if="cuestionario.q8 =='Si'">
+                <label style="white-space: normal !important;" class="item item-input inputs">
+                  <div class="input-label">
+                    Hace cuanto lo padece?
+                  <label class="item item-input">                     
+                    <input focus="true" type="number" class="input-validate" placeholder="Digite la cantidad" name="Q8Cantidad" required ng-model="cuestionario.cantidadQ8"/>
+                  </label>                         
+                  </div>
+                  <label class="item-radio radios">
+                    <ion-radio class="item item-radio" name="Q83" ng-model="cuestionario.intervaloQ8" value="Semanas">Semana/s</ion-radio>
+                    <ion-radio class="item item-radio" name="Q84" ng-model="cuestionario.intervaloQ8" value="Meses">Mes/es</ion-radio>
+                    <ion-radio class="item item-radio" name="Q85" ng-model="cuestionario.intervaloQ8" value="Años">Año/s</ion-radio>
+                  </label> 
+                </label> 
+              </div>                 
+            </div>
+            <br>
+            <div id="question9" ng-show="cuestionario.intervaloQ8 && saludForm.Q8Cantidad.$valid || cuestionario.q8 =='No'">
+              <label class="item item-input">
+                <div class="input-label inputs">
+                  Ha sufrido del corazón?
+                </div>                             
+              </label>
+              <ion-radio class="item item-radio balanced" name="Q91" ng-model="cuestionario.q9" ng-value="'Si'">Si</ion-radio>
+              <ion-radio class="item item-radio assertive" name="Q92" ng-model="cuestionario.q9" ng-click="clearQ9()" ng-value="'No'">No</ion-radio>
+              <div ng-if="cuestionario.q9 =='Si'">
+                <label style="white-space: normal !important;" class="item item-input inputs">
+                  <div class="input-label">
+                    Hace cuanto lo padece?
+                  <label class="item item-input">                     
+                    <input focus="true" type="number" class="input-validate" placeholder="Digite la cantidad" name="Q9Cantidad" required ng-model="cuestionario.cantidadQ9"/>
+                  </label>                         
+                  </div>
+                  <label class="item-radio radios">
+                    <ion-radio class="item item-radio" name="Q93" ng-model="cuestionario.intervaloQ9" value="Semanas">Semana/s</ion-radio>
+                    <ion-radio class="item item-radio" name="Q94" ng-model="cuestionario.intervaloQ9" value="Meses">Mes/es</ion-radio>
+                    <ion-radio class="item item-radio" name="Q95" ng-model="cuestionario.intervaloQ9" value="Años">Año/s</ion-radio>
+                  </label> 
+                </label> 
+              </div>                 
+            </div>
+            <br>
+            <div id="question10" ng-show="cuestionario.intervaloQ9 && saludForm.Q9Cantidad.$valid || cuestionario.q9 =='No'">
+              <label class="item item-input">
+                <div class="input-label inputs">
+                  Tiene problemas para concentrarse?
+                </div>                             
+              </label>
+              <ion-radio class="item item-radio balanced" name="Q101" ng-model="cuestionario.q10" ng-value="'Si'">Si</ion-radio>
+              <ion-radio class="item item-radio assertive" name="Q102" ng-model="cuestionario.q10" ng-click="clearQ10()" ng-value="'No'">No</ion-radio>
+              <div ng-if="cuestionario.q10 =='Si'">
+                <label style="white-space: normal !important;" class="item item-input inputs">
+                  <div class="input-label">
+                    Hace cuanto lo padece?
+                  <label class="item item-input">                     
+                    <input focus="true" type="number" class="input-validate" placeholder="Digite la cantidad" name="Q10Cantidad" required ng-model="cuestionario.cantidadQ10"/>
+                  </label>                         
+                  </div>
+                  <label class="item-radio radios">
+                    <ion-radio class="item item-radio" name="Q103" ng-model="cuestionario.intervaloQ10" value="Semanas">Semana/s</ion-radio>
+                    <ion-radio class="item item-radio" name="Q104" ng-model="cuestionario.intervaloQ10" value="Meses">Mes/es</ion-radio>
+                    <ion-radio class="item item-radio" name="Q105" ng-model="cuestionario.intervaloQ10" value="Años">Año/s</ion-radio>
+                  </label> 
+                </label> 
+              </div>                 
+            </div>
+            <br>
+            <div id="question11" ng-show="cuestionario.intervaloQ10 && saludForm.Q10Cantidad.$valid || cuestionario.q10 =='No'">
+              <label class="item item-input">
+                <div class="input-label inputs">
+                  Tiene problemas de Sobrepeso y/o Obesidad?
+                </div>                             
+              </label>
+              <ion-radio class="item item-radio balanced" name="Q111" ng-model="cuestionario.q11" ng-value="'Si'">Si</ion-radio>
+              <ion-radio class="item item-radio assertive" name="Q112" ng-model="cuestionario.q11" ng-click="clearQ11()" ng-value="'No'">No</ion-radio>
+              <div ng-if="cuestionario.q11 =='Si'">
+                <label style="white-space: normal !important;" class="item item-input inputs">
+                  <div class="input-label">
+                    Hace cuanto lo padece?
+                  <label class="item item-input">                     
+                    <input focus="true" type="number" class="input-validate" placeholder="Digite la cantidad" name="Q11Cantidad" required ng-model="cuestionario.cantidadQ11"/>
+                  </label>                         
+                  </div>
+                  <label class="item-radio radios">
+                    <ion-radio class="item item-radio" name="Q113" ng-model="cuestionario.intervaloQ11" value="Semanas">Semana/s</ion-radio>
+                    <ion-radio class="item item-radio" name="Q114" ng-model="cuestionario.intervaloQ11" value="Meses">Mes/es</ion-radio>
+                    <ion-radio class="item item-radio" name="Q115" ng-model="cuestionario.intervaloQ11" value="Años">Año/s</ion-radio>
+                  </label> 
+                </label> 
+              </div>                 
+            </div>
+            <br>
+            <div id="question12" ng-show="cuestionario.intervaloQ11 && saludForm.Q11Cantidad.$valid || cuestionario.q11 =='No'">
+              <label class="item item-input">
+                <div class="input-label inputs">
+                  Ha sufrido o sufre de Asma?
+                </div>                             
+              </label>
+              <ion-radio class="item item-radio balanced" name="Q121" ng-model="cuestionario.q12" ng-value="'Si'">Si</ion-radio>
+              <ion-radio class="item item-radio assertive" name="Q122" ng-model="cuestionario.q12" ng-click="clearQ12()" ng-value="'No'">No</ion-radio>
+              <div ng-if="cuestionario.q12 =='Si'">
+                <label style="white-space: normal !important;" class="item item-input inputs">
+                  <div class="input-label">
+                    Hace cuanto lo padece?
+                  <label class="item item-input">                     
+                    <input focus="true" type="number" class="input-validate" placeholder="Digite la cantidad" name="Q12Cantidad" required ng-model="cuestionario.cantidadQ12"/>
+                  </label>                         
+                  </div>
+                  <label class="item-radio radios">
+                    <ion-radio class="item item-radio" name="Q123" ng-model="cuestionario.intervaloQ12" value="Semanas">Semana/s</ion-radio>
+                    <ion-radio class="item item-radio" name="Q124" ng-model="cuestionario.intervaloQ12" value="Meses">Mes/es</ion-radio>
+                    <ion-radio class="item item-radio" name="Q125" ng-model="cuestionario.intervaloQ12" value="Años">Año/s</ion-radio>
+                  </label> 
+                </label> 
+              </div>                 
+            </div>
+            <br>
+            <div id="question13" ng-show="cuestionario.intervaloQ12 && saludForm.Q12Cantidad.$valid || cuestionario.q12 =='No'">
+              <label class="item item-input">
+                <div class="input-label inputs">
+                  Tiene problemas visuales?
+                </div>                             
+              </label>
+              <ion-radio class="item item-radio balanced" name="Q131" ng-model="cuestionario.q13" ng-value="'Si'">Si</ion-radio>
+              <ion-radio class="item item-radio assertive" name="Q132" ng-model="cuestionario.q13" ng-click="clearQ13()" ng-value="'No'">No</ion-radio>
+              <div ng-if="cuestionario.q13 =='Si'">
+                <label style="white-space: normal !important;" class="item item-input inputs">
+                  <div class="input-label">
+                    Hace cuanto lo padece?
+                  <label class="item item-input">                     
+                    <input focus="true" type="number" class="input-validate" placeholder="Digite la cantidad" name="Q13Cantidad" required ng-model="cuestionario.cantidadQ13"/>
+                  </label>                         
+                  </div>
+                  <label class="item-radio radios">
+                    <ion-radio class="item item-radio" name="Q133" ng-model="cuestionario.intervaloQ13" value="Semanas">Semana/s</ion-radio>
+                    <ion-radio class="item item-radio" name="Q134" ng-model="cuestionario.intervaloQ13" value="Meses">Mes/es</ion-radio>
+                    <ion-radio class="item item-radio" name="Q135" ng-model="cuestionario.intervaloQ13" value="Años">Año/s</ion-radio>
+                  </label> 
+                </label> 
+              </div>                 
+            </div>
+            <br>
+            <div id="question14" ng-show="cuestionario.intervaloQ13 && saludForm.Q13Cantidad.$valid || cuestionario.q13 =='No'">
+              <label class="item item-input">
+                <div class="input-label inputs">
+                  Sufre o ha sufrido de alguna enfermedad neurológica?
+                </div>                             
+              </label>
+              <ion-radio class="item item-radio balanced" name="Q141" ng-model="cuestionario.q14" ng-value="'Si'">Si</ion-radio>
+              <ion-radio class="item item-radio assertive" name="Q142" ng-model="cuestionario.q14" ng-click="clearQ14()" ng-value="'No'">No</ion-radio>
+              <div ng-if="cuestionario.q14 =='Si'">
+                <label style="white-space: normal !important;" class="item item-input inputs">
+                  <div class="input-label">
+                    Hace cuanto lo padece?
+                  <label class="item item-input">                     
+                    <input focus="true" type="number" class="input-validate" placeholder="Digite la cantidad" name="Q14Cantidad" required ng-model="cuestionario.cantidadQ14"/>
+                  </label>                         
+                  </div>
+                  <label class="item-radio radios">
+                    <ion-radio class="item item-radio" name="Q143" ng-model="cuestionario.intervaloQ14" value="Semanas">Semana/s</ion-radio>
+                    <ion-radio class="item item-radio" name="Q144" ng-model="cuestionario.intervaloQ14" value="Meses">Mes/es</ion-radio>
+                    <ion-radio class="item item-radio" name="Q145" ng-model="cuestionario.intervaloQ14" value="Años">Año/s</ion-radio>
+                  </label> 
+                </label> 
+              </div>                 
+            </div>                  
+            <br>
+            <div id="question15" ng-show="cuestionario.intervaloQ14 && saludForm.Q14Cantidad.$valid || cuestionario.q14 =='No'">
+              <label class="item item-input">
+                <div class="input-label inputs">
+                  Tiene usted algun tipo de alergia?
+                </div>                             
+              </label>
+              <ion-radio class="item item-radio balanced" name="Q151" ng-model="cuestionario.q15" ng-value="'Si'">Si</ion-radio>
+              <ion-radio class="item item-radio assertive" name="Q152" ng-model="cuestionario.q15" ng-click="clearQ15()" ng-value="'No'">No</ion-radio>
+              <div ng-if="cuestionario.q15 =='Si'">
+                <label style="white-space: normal !important;" class="item item-input inputs">
+                  <div class="input-label">
+                    Hace cuanto la padece?
+                  <label class="item item-input">                     
+                    <input focus="true" type="number" class="input-validate" placeholder="Digite la cantidad" name="Q15Cantidad" required ng-model="cuestionario.cantidadQ15"/>
+                  </label>                         
+                  </div>
+                  <label class="item-radio radios">
+                    <ion-radio class="item item-radio" name="Q153" ng-model="cuestionario.intervaloQ15" value="Semanas">Semana/s</ion-radio>
+                    <ion-radio class="item item-radio" name="Q154" ng-model="cuestionario.intervaloQ15" value="Meses">Mes/es</ion-radio>
+                    <ion-radio class="item item-radio" name="Q155" ng-model="cuestionario.intervaloQ15" value="Años">Año/s</ion-radio>
+                  </label> 
+                </label>
+                <div ng-show="cuestionario.intervaloQ15 && saludForm.Q15Cantidad.$valid">                        
+                  <div class="input-label">
+                    Describa a que es alérgico?
+                  </div>
+                  <label class="item-input">
+                    <input focus="true" type="text" ng-model="cuestionario.descripcionQ15" name="Q15Descripcion" placeholder="Alergias" required ng-minlength=1 ng-maxlength=80/>
+                  </label>                                             
+                </div>
+              </div>                 
+            </div>                  
+            <br>
+            <div id="question16" ng-show="saludForm.Q15Descripcion.$valid || cuestionario.q15 =='No'">
+              <label class="item item-input">
+                <div class="input-label inputs">
+                  En la actualidad consume algún medicamento?
+                </div>                             
+              </label>
+              <ion-radio class="item item-radio balanced" name="Q161" ng-model="cuestionario.q16" ng-value="'Si'">Si</ion-radio>
+              <ion-radio class="item item-radio assertive" name="Q162" ng-model="cuestionario.q16" ng-click="clearQ16()" ng-value="'No'">No</ion-radio>
+              <div ng-if="cuestionario.q16 =='Si'">
+                <div class="input-label">
+                  Escriba cuales medicamentos consume...
+                </div>
+                <label class="item-input">
+                  <input focus="true" type="text" ng-model="cuestionario.descripcionQ16" name="Q16Descripcion" placeholder="Medicamentos" required ng-minlength=1 ng-maxlength=80/>
+                </label>                                             
+              </div>                 
+            </div>                  
+            <br>  
+            <div id="separador" ng-show="saludForm.Q16Descripcion.$valid || cuestionario.q16 =='No'" style="text-align: center !important;" class="card"> 
+                <h3>Conteste las siguientes preguntas:</h3>               
+            </div>
+            <div id="question17" ng-show="saludForm.Q16Descripcion.$valid || cuestionario.q16 =='No'"> 
+              <label class="item item-input">
+                <div class="input-label inputs">
+                  Ha laborado alguna vez en altura?
+                </div>                             
+              </label>
+              <ion-radio class="item item-radio balanced" name="Q171" ng-model="cuestionario.q17" ng-value="'Si'">Si</ion-radio>
+              <ion-radio class="item item-radio assertive" name="Q172" ng-model="cuestionario.q17" ng-click="clearQ17()" ng-value="'No'">No</ion-radio>
+              <div ng-if="cuestionario.q17 == 'Si'">
+                <label class="item item-input">
+                  <div class="input-label">
+                    Escriba aquí donde?
+                  </div>
+                </label>
+                <label class="item-input">
+                  <input focus="true" type="text" ng-model="cuestionario.descripcionQ17" name="Q17Descripcion" placeholder="Lugares" required ng-minlength=1 ng-maxlength=80/>
+                </label>                         
+              </div>
+            </div>             
+            <br>
+            <div id="question18" ng-show="saludForm.Q17Descripcion.$valid || cuestionario.q17 =='No'">
+              <label class="item item-input">
+                <div class="input-label inputs">
+                  Usted cree que puede trabajar en altura?
+                </div>                             
+              </label>
+              <ion-radio class="item item-radio balanced" name="Q181" ng-model="cuestionario.q18" ng-value="'Si'">Si</ion-radio>
+              <ion-radio class="item item-radio assertive" name="Q182" ng-model="cuestionario.q18" ng-click="clearQ18()" ng-value="'No'">No</ion-radio>
+              <div ng-if="cuestionario.q18 == 'Si'">
+                <label class="item item-input">
+                  <div class="input-label">
+                    Explique porqué:
+                  </div>
+                </label>
+                <label class="item-input">
+                  <input focus="true" type="text" ng-model="cuestionario.descripcionQ18" name="Q18Descripcion" placeholder="Breve explicación"required ng-minlength=1 ng-maxlength=80 />
+                </label>                         
+              </div>                    
+            </div>
+            <br>                  
+            <div id="question19" ng-show="saludForm.Q18Descripcion.$valid || cuestionario.q18 =='No'">
+              <label class="item item-input">
+                <div class="input-label inputs">
+                  Ud. se siente capacitado para laborar en altura?
+                </div>
+                 <br>
+              </label>                   
+              <ion-radio class="item item-radio balanced" name="Q191" ng-model="cuestionario.q19" ng-value="'Si'">Si</ion-radio>
+              <ion-radio class="item item-radio assertive" name="Q192" ng-model="cuestionario.q19" ng-value="'No'">No</ion-radio>
+            </div>
+            <br>
+            <div id="question20" ng-show="cuestionario.q19">
+              <label class="item item-input">
+                <div class="input-label inputs">
+                  Ha recibido entrenamiento?
+                </div>
+                 <br>
+              </label>
+              <ion-radio class="item item-radio balanced" name="Q201" ng-model="cuestionario.q20" ng-value="'Si'">Si</ion-radio>
+              <ion-radio class="item item-radio assertive" name="Q202" ng-model="cuestionario.q20" ng-click="clearQ20()" ng-value="'No'">No</ion-radio>
+              <div ng-if="cuestionario.q20 == 'Si'">
+                <label class="item item-input">
+                  <div class="input-label">
+                    Con cual/es empresa/s?
+                  </div>
+                </label>
+                <label class="item-input">
+                  <input focus="true" type="text" ng-model="cuestionario.descripcionQ20" name="Q20Descripcion" placeholder="Empresas" required ng-minlength=1 ng-maxlength=80/>
+                </label>                         
+              </div>                    
+            </div>
+            <br>
+            <div id="question21" ng-show="saludForm.Q20Descripcion.$valid || cuestionario.q20 =='No'">
+              <label class="item item-input">
+                <div class="input-label inputs">
+                  Ha utilizado alguna vez Arnés?
+                </div>
+                 <br>
+              </label>                   
+              <ion-radio class="item item-radio balanced" name="Q211" ng-model="cuestionario.q21" ng-value="'Si'">Si</ion-radio>
+              <ion-radio class="item item-radio assertive" name="Q212" ng-model="cuestionario.q21" ng-value="'No'">No</ion-radio>
+            </div>
+            <br>
+            <div id="question22" ng-show="cuestionario.q21">
+              <label class="item item-input">
+                <div class="input-label inputs">
+                  Ha laborado en espacios confinados o cerrados?
+                </div>
+                 <br>
+              </label>                 
+              <ion-radio class="item item-radio balanced" name="Q221" ng-model="cuestionario.q22" ng-value="'Si'">Si</ion-radio>
+              <ion-radio class="item item-radio assertive" name="Q222" ng-model="cuestionario.q22" ng-value="'No'">No</ion-radio>
+            </div>                   
+          </div>                
+        </form>
+        <br>            
+        <div class="row" ng-show="cuestionario.q22 || cuestionario.q22 && saludForm.Q1Cantidad.$valid || saludForm.Q2Cantidad.$valid ">
+          <div class="col">
+            <button class="button button-energized" type="" ng-click="refresh()">
+              <i class="icon ion-close"></i> Cancelar
+            </button>               
+          </div>
+          <div class="col">
+            <button style="text-align: center!important;" class="button button-balanced" type="" ng-click="sendCuestionario(cuestionario)">
+              <i class="icon ion-paper-airplane"></i>  Enviar cuestionario
+            </button>                                       
+          </div>
+        </div>
+        <br>
+        <div ng-show="showError">
+          <div>
+            <h3 class="assertive">El numero de documento no existe en la base de datos!</h3>
+            <br>
+            <br>
+            <br>            
+          </div>
+          <button class="button button-balanced" type="" ng-click="refresh()">
+            <i class="icon ion-chevron-left"></i> Regresar
+          </button>                        
+        </div>
+    <img src="img/kibox.png" alt="" style="width:150px;"/>        
+  </ion-content>
+</ion-view>           
